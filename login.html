@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - WMS PORTFOLIO</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            /* Gradasi Hijau Elegan */
+            background: linear-gradient(135deg, #064e3b, #065f46, #064e3b); 
+            height: 100vh; display: flex; justify-content: center; align-items: center; 
+        }
+        .login-card { background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 100%; max-width: 400px; }
+        .login-header { text-align: center; margin-bottom: 24px; color: #065f46; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; }
+        
+        /* Container Password + Tombol Lihat */
+        .password-container { position: relative; display: flex; align-items: center; }
+        .password-container input { padding-right: 70px; }
+        .toggle-password {
+            position: absolute; right: 10px; cursor: pointer; color: #065f46; 
+            font-size: 11px; font-weight: bold; background: #e0f2f1; padding: 4px 8px; border-radius: 4px;
+        }
+        
+        .btn-login { 
+            width: 100%; padding: 12px; background: #065f46; color: white; border: none; 
+            border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .btn-login:hover { background: #047857; }
+        .error-msg { color: #dc2626; font-size: 12px; text-align: center; margin-top: 12px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-header">
+            <h2>WMS PORTFOLIO</h2>
+        </div>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="wahyu.irhamna" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="********" required>
+                    <span class="toggle-password" onclick="togglePass()">LIHAT</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+            <div id="error-alert" class="error-msg">Username atau Password salah!</div>
+        </form>
+    </div>
+
+    <script>
+        function togglePass() {
+            const pass = document.getElementById('password');
+            const btn = document.querySelector('.toggle-password');
+            if (pass.type === "password") {
+                pass.type = "text";
+                btn.textContent = "SEMBUNYI";
+            } else {
+                pass.type = "password";
+                btn.textContent = "LIHAT";
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            
+            if (user === 'wahyu.irhamna' && pass === 'wahyu123') {
+                localStorage.setItem('wms_logged_in', 'true');
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error-alert').style.display = 'block';
+            }
+        }
+    </script>
+    <!-- TOMBOL BACA PROFIL & PANDUAN -->
+<button onclick="toggleInfo()" style="position:fixed; top:20px; right:20px; background:#d97706; color:white; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:15px; z-index:9999; box-shadow:0 4px 6px rgba(0,0,0,0.2);">
+    ✨ Baca Profil & Panduan
+</button>
+
+<!-- PANEL MELAYANG -->
+<div id="infoOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9998;">
+    
+    <!-- Kotak Profil (Kiri) -->
+    <div style="position:absolute; left:40px; top:100px; width:350px; background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+        <img src="foto-profil.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:15px; display:block; margin-left:auto; margin-right:auto; border:3px solid #475569;">
+        <h3 style="text-align:center; color:#1e293b; font-size:18px;">Wahyu Irhamna</h3>
+        <p style="text-align:center; font-size:13px; color:#64748b; margin-bottom:15px;">Kontak: 085714245604 | irhamnaw61@gmail.com</p>
+        <hr style="margin-bottom:15px; border:0; border-top:1px solid #e2e8f0;">
+        <h4 style="font-size:14px; color:#1e293b; margin-bottom:8px;">SELAMAT DATANG</h4>
+        <p style="font-size:13px; text-align:justify; color:#334155; line-height:1.6;">
+            Halo, terima kasih sudah mampir di portofolio project <b>WMS Inventory Management</b> ini. Saya Wahyu Irhamna, lulusan <b>Manajemen Bisnis</b>. Tujuan saya membuat simulasi ini karena untuk melatih kemampuan operasional aplikasi yang banyak digunakan di <b>Gudang/Warehouse</b>. Saya memiliki minat besar untuk bisa berkontribusi sebagai <b>Staff Gudang / Admin Warehouse</b> atau posisi relevan lainnya.
+        </p>
+        <button onclick="toggleInfo()" style="margin-top:20px; width:100%; padding:10px; background:#475569; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">TUTUP</button>
+    </div>
+
+    <!-- Kotak Panduan (Kanan) -->
+    <div style="position:absolute; right:40px; top:100px; width:350px; background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+        <h3 style="color:#1e293b; margin-bottom:15px; font-size:16px;">Panduan dan Fitur WMS</h3>
+        <ul style="font-size:13px; line-height:2.0; padding-left:20px; color:#334155;">
+            <li><b>Username:</b> wahyu.irhamna</li>
+            <li><b>Password:</b> wahyu123</li>
+            <li><b>Dashboard:</b> Monitoring real-time total stok dan arus barang.</li>
+            <li><b>Master SKU:</b> Manajemen katalog barang dan data produk.</li>
+            <li><b>Inbound & Outbound:</b> Pencatatan arus barang masuk dan keluar.</li>
+            <li><b>Stock Opname:</b> Fitur audit untuk sinkronisasi stok fisik.</li>
+            <li><b>Laporan:</b> Ringkasan mutasi barang untuk evaluasi manajemen.</li>
+            <li><b>Akses:</b> Sistem login aman untuk kontrol staf berwenang.</li>
+        </ul>
+        <button onclick="toggleInfo()" style="margin-top:20px; width:100%; padding:10px; background:#475569; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">TUTUP</button>
+    </div>
+</div>
+
+<script>
+    function toggleInfo() {
+        const overlay = document.getElementById('infoOverlay');
+        overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>
+
