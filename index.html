@@ -9,13 +9,12 @@
 <body>
 
     <div class="app-container">
-         <!-- SIDEBAR -->
+        <!-- SIDEBAR -->
         <aside id="sidebar">
             <div class="sidebar-header">
                 <h3>WMS PORTFOLIO</h3>
                 <p>Wahyu Irhamna</p>
             </div>
-            <!-- GANTI BAGIAN NAV INI -->
             <nav>
                 <button id="btn-dashboard" class="active" onclick="showMenu('dashboard')">Dashboard</button>
                 <button id="btn-sku" onclick="showMenu('sku')">Master Data SKU</button>
@@ -23,7 +22,6 @@
                 <button id="btn-outbound" onclick="showMenu('outbound')">Outbound (Keluar)</button>
                 <button id="btn-opname" onclick="showMenu('opname')">Stock Opname</button>
                 <button id="btn-laporan" onclick="showMenu('laporan')">Laporan</button>
-                <!-- TOMBOL LOGOUT BARU -->
                 <button id="btn-logout" onclick="handleLogout()" style="background-color: #dc2626; color: white; margin-top: 20px; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">Logout</button>
             </nav>
         </aside>
@@ -54,6 +52,12 @@
 
                 <!-- 2. MASTER DATA SKU -->
                 <div id="sku-menu" class="menu-section hidden">
+                    <div class="metrics">
+                        <div class="card">Total SKU <h3 id="sku-box-count">0</h3></div>
+                        <div class="card">Kategori Barang <h3 id="sku-box-cat">0</h3></div>
+                        <div class="card">Total Stok Gudang <h3 id="sku-box-stock">0 Pcs</h3></div>
+                        <div class="card">Status Database <h3 style="color: #ffffff; font-size: 18px; margin-top: 6px;">Aktif</h3></div>
+                    </div>
                     <div class="toolbar">
                         <input type="text" id="search-sku" placeholder="Cari SKU atau Nama...">
                         <button class="btn-green" onclick="openModal('sku-modal')">+ Tambah Barang Baru</button>
@@ -66,6 +70,12 @@
 
                 <!-- 3. INBOUND -->
                 <div id="inbound-menu" class="menu-section hidden">
+                    <div class="metrics">
+                        <div class="card">Total Inbound <h3 id="in-box-total">0 Pcs</h3></div>
+                        <div class="card">Frekuensi Masuk <h3 id="in-box-freq">0x</h3></div>
+                        <div class="card">Supplier Terdaftar <h3 style="font-size: 18px; margin-top: 6px;">Vendor Verified</h3></div>
+                        <div class="card">Otomasi Sistem <h3 style="color: #ffffff; font-size: 18px; margin-top: 6px;">Auto-Stock</h3></div>
+                    </div>
                     <div class="toolbar">
                         <input type="text" id="search-inbound" placeholder="Cari No PO atau Supplier...">
                         <button class="btn-green" onclick="openModal('inbound-modal')">+ Buat Penerimaan Baru</button>
@@ -78,6 +88,12 @@
 
                 <!-- 4. OUTBOUND -->
                 <div id="outbound-menu" class="menu-section hidden">
+                    <div class="metrics">
+                        <div class="card">Total Outbound <h3 id="out-box-total">0 Pcs</h3></div>
+                        <div class="card">Frekuensi Keluar <h3 id="out-box-freq">0x</h3></div>
+                        <div class="card">Validasi Stok <h3 style="color: #ffffff; #059669; font-size: 18px; margin-top: 6px;">Aman</h3></div>
+                        <div class="card">Status Pengiriman <h3 style="font-size: 18px; margin-top: 6px;">Real-Time</h3></div>
+                    </div>
                     <div class="toolbar">
                         <input type="text" id="search-outbound" placeholder="Cari Tujuan...">
                         <button class="btn-green" onclick="openModal('outbound-modal')">+ Buat Pengiriman Baru</button>
@@ -90,7 +106,13 @@
 
                 <!-- 5. STOCK OPNAME -->
                 <div id="opname-menu" class="menu-section hidden">
-                    <div class="toolbar"><span>Banner Panduan: Masukkan Stok Fisik...</span></div>
+                    <div class="metrics">
+                        <div class="card">Total Item Audit <h3 id="op-box-total">0</h3></div>
+                        <div class="card">Mode Opname <h3 style="font-size: 18px; margin-top: 6px;">Fisik vs Sistem</h3></div>
+                        <div class="card">Selisih Stok <h3 style="color: #ffffff; #2563eb; font-size: 18px; margin-top: 6px;">Sinkron</h3></div>
+                        <div class="card">Status Audit <h3 style="color: #ffffff; #059669; font-size: 18px; margin-top: 6px;">Ready</h3></div>
+                    </div>
+                    <div class="toolbar"><span>Banner Panduan: Masukkan Stok Fisik pada kolom yang tersedia...</span></div>
                     <table id="opname-table">
                         <thead><tr><th>SKU</th><th>Nama Barang</th><th>Stok Sistem</th><th>Stok Fisik</th><th>Selisih</th></tr></thead>
                         <tbody></tbody>
@@ -100,6 +122,12 @@
 
                 <!-- 6. LAPORAN -->
                 <div id="laporan-menu" class="menu-section hidden">
+                    <div class="metrics">
+                        <div class="card">Jenis Laporan <h3 style="font-size: 18px; margin-top: 6px;">Mutasi Gudang</h3></div>
+                        <div class="card">Format Cetak <h3 style="font-size: 18px; margin-top: 6px;">Clean Print</h3></div>
+                        <div class="card">Akses Data <h3 style="font-size: 18px; margin-top: 6px;">Real-Time</h3></div>
+                        <div class="card">Status Laporan <h3 style="color: #059669; font-size: 18px; margin-top: 6px;">Valid</h3></div>
+                    </div>
                     <div class="toolbar">
                         <input type="date" id="report-start"> s/d <input type="date" id="report-end">
                         <button class="btn-black" onclick="window.print()">Cetak / Export Laporan</button>
@@ -114,67 +142,61 @@
         </main>
     </div>
 
-    <!-- MODAL POP-UP CONTAINER -->
-    <!-- Modal Tambah SKU -->
-    <div id="sku-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000;">
-        <div class="card" style="width: 400px; background: white;">
-            <h3>Tambah Barang Baru (SKU)</h3>
-            <form id="form-sku" onsubmit="handleSaveSku(event)" style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
-                <input type="text" id="input-sku-code" placeholder="Kode SKU (Cth: SKU002)" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-sku-name" placeholder="Nama Barang" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-sku-cat" placeholder="Kategori" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="number" id="input-sku-price" placeholder="Harga Satuan (Rp)" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="number" id="input-sku-stock" placeholder="Stok Awal" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-sku-loc" placeholder="Lokasi Rak (Cth: Rak A2)" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
-                    <button type="button" class="btn-black" onclick="closeModal('sku-modal')">Batal</button>
-                    <button type="submit" class="btn-green">Simpan</button>
-                </div>
-            </form>
-        </div>
+   <!-- MODAL 1: SKU -->
+<div id="sku-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000; padding:16px;">
+    <div style="width: 100%; max-width: 320px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 12px;">
+        <form id="form-sku" onsubmit="handleSaveSku(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <input type="text" id="input-sku-code" placeholder="Kode SKU" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-sku-name" placeholder="Nama Barang" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-sku-cat" placeholder="Kategori" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="number" id="input-sku-price" placeholder="Harga (Rp)" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="number" id="input-sku-stock" placeholder="Stok Awal" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-sku-loc" placeholder="Lokasi Rak" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <div style="display:flex; gap:8px; margin-top:8px;">
+                <button type="button" class="btn-black" onclick="closeModal('sku-modal')" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Batal</button>
+                <button type="submit" class="btn-green" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Simpan</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- Modal Inbound -->
-    <div id="inbound-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000;">
-        <div class="card" style="width: 400px; background: white;">
-            <h3>Buat Penerimaan Baru (Inbound)</h3>
-            <form id="form-inbound" onsubmit="handleSaveInbound(event)" style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
-                <input type="date" id="input-in-date" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-in-po" placeholder="No. PO" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-in-supplier" placeholder="Nama Supplier" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <select id="input-in-sku" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;"></select>
-                <input type="number" id="input-in-qty" placeholder="Jumlah Masuk" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
-                    <button type="button" class="btn-black" onclick="closeModal('inbound-modal')">Batal</button>
-                    <button type="submit" class="btn-green">Simpan</button>
-                </div>
-            </form>
-        </div>
+<!-- MODAL 2: INBOUND -->
+<div id="inbound-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000; padding:16px;">
+    <div style="width: 100%; max-width: 320px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 12px;">
+        <form id="form-inbound" onsubmit="handleSaveInbound(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <input type="date" id="input-in-date" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-in-po" placeholder="No. PO" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-in-supplier" placeholder="Nama Supplier" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <select id="input-in-sku" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; background:white;"></select>
+            <input type="number" id="input-in-qty" placeholder="Jumlah Masuk" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <div style="display:flex; gap:8px; margin-top:8px;">
+                <button type="button" class="btn-black" onclick="closeModal('inbound-modal')" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Batal</button>
+                <button type="submit" class="btn-green" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Simpan</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- Modal Outbound -->
-    <div id="outbound-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000;">
-        <div class="card" style="width: 400px; background: white;">
-            <h3>Buat Pengiriman Baru (Outbound)</h3>
-            <form id="form-outbound" onsubmit="handleSaveOutbound(event)" style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
-                <input type="date" id="input-out-date" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <input type="text" id="input-out-dest" placeholder="Tujuan Pengiriman / Customer" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <select id="input-out-sku" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;"></select>
-                <input type="number" id="input-out-qty" placeholder="Jumlah Keluar" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                <select id="input-out-status" required style="padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
-                    <option value="Packing">Packing</option>
-                    <option value="Ready to Ship">Ready to Ship</option>
-                    <option value="Delivered">Delivered</option>
-                </select>
-                <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
-                    <button type="button" class="btn-black" onclick="closeModal('outbound-modal')">Batal</button>
-                    <button type="submit" class="btn-green">Simpan</button>
-                </div>
-            </form>
-        </div>
+<!-- MODAL 3: OUTBOUND -->
+<div id="outbound-modal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:1000; padding:16px;">
+    <div style="width: 100%; max-width: 320px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 12px;">
+        <form id="form-outbound" onsubmit="handleSaveOutbound(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <input type="date" id="input-out-date" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <input type="text" id="input-out-dest" placeholder="Tujuan / Customer" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <select id="input-out-sku" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; background:white;"></select>
+            <input type="number" id="input-out-qty" placeholder="Jumlah Keluar" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px;">
+            <select id="input-out-status" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; background:white;">
+                <option value="Packing">Packing</option>
+                <option value="Ready to Ship">Ready to Ship</option>
+                <option value="Delivered">Delivered</option>
+            </select>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+                <button type="button" class="btn-black" onclick="closeModal('outbound-modal')" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Batal</button>
+                <button type="submit" class="btn-green" style="flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer;">Simpan</button>
+            </div>
+        </form>
     </div>
-
+</div>
     <script src="script.js"></script>
 </body>
 </html>
-
