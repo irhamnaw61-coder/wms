@@ -1,6 +1,7 @@
 /* ========================================================================== */
-/* 1. GLOBAL & RESET STYLES                                                   */
+/* WMS PORTFOLIO - MASTER STYLESHEET (ULTIMATE FIXED VERSION)                 */
 /* ========================================================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,25 +10,22 @@
 }
 
 body {
-    background-color: #f1f5f9; /* Sesuai rancangan: latar abu-abu sangat terang */
+    background-color: #f1f5f9;
     color: #1e293b;
     height: 100vh;
     overflow: hidden;
 }
 
-/* ========================================================================== */
-/* 2. LAYOUT UTAMA (CONTAINER & SIDEBAR)                                      */
-/* ========================================================================== */
 .app-container {
     display: flex;
     height: 100vh;
     width: 100vw;
 }
 
-/* Sisi Kiri: Sidebar Navigasi (#sidebar) */
+/* Sidebar */
 #sidebar {
     width: 260px;
-    background-color: #0f172a; /* Sesuai rancangan: Navy Blue profesional */
+    background-color: #0f172a;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -81,15 +79,12 @@ body {
     color: #ffffff;
 }
 
-/* Indikator menu aktif (warna biru menyala) */
 #sidebar nav button.active {
     background-color: #2563eb;
     color: #ffffff;
 }
 
-/* ========================================================================== */
-/* 3. AREA KONTEN UTAMA (#main-content)                                       */
-/* ========================================================================== */
+/* Konten Utama */
 #main-content {
     flex-grow: 1;
     display: flex;
@@ -97,7 +92,6 @@ body {
     overflow: hidden;
 }
 
-/* Header Kanan Atas */
 #main-content header {
     height: 64px;
     background-color: #ffffff;
@@ -139,17 +133,7 @@ body {
     display: none !important;
 }
 
-/* ========================================================================== */
-/* 4. KOMPONEN KARTU (CARDS) & DASHBOARD METRICS                              */
-/* ========================================================================== */
-.card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
-}
-
+/* Kartu Statistik Atas (Dashboard & Menu Lainnya) */
 .metrics {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -157,29 +141,107 @@ body {
 }
 
 .metrics .card {
-    cursor: pointer;
-    transition: border-color 0.2s ease;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.metrics .card:hover {
-    border-color: #2563eb;
+.metrics .card:nth-child(1) { background: #2563eb !important; color: #ffffff !important; }
+.metrics .card:nth-child(2) { background: #059669 !important; color: #ffffff !important; }
+.metrics .card:nth-child(3) { background: #d97706 !important; color: #ffffff !important; }
+.metrics .card:nth-child(4) { background: #dc2626 !important; color: #ffffff !important; }
+
+.metrics .card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff !important;
+    margin-top: 8px;
 }
 
+/* ========================================================================== */
+/* PAKSA MUTLAK KHUSUS TAMPILAN MENU LAPORAN                                  */
+/* ========================================================================== */
+#laporan-menu .metrics .card:nth-child(1) { background: #2563eb !important; }
+#laporan-menu .metrics .card:nth-child(2) { background: #059669 !important; }
+#laporan-menu .metrics .card:nth-child(3) { background: #d97706 !important; }
+#laporan-menu .metrics .card:nth-child(4) { background: #dc2626 !important; }
+
+#laporan-menu .toolbar {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    padding: 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+#laporan-menu > .card {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    padding: 24px !important;
+    margin-top: 0 !important;
+}
+
+#laporan-menu > .card h4 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin-bottom: 8px !important;
+}
+
+/* Kartu Bawah Dashboard */
 .dashboard-bottom {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.dashboard-bottom .card h4 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 16px;
+.dashboard-bottom .card:nth-child(1) {
+    background: #d97706 !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    border: none !important;
 }
 
-/* ========================================================================== */
-/* 5. TOOLBAR, SEARCH BAR, & INPUT KONTROL                                    */
-/* ========================================================================== */
+.dashboard-bottom .card:nth-child(2) {
+    background: #334155 !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    border: none !important;
+}
+
+.dashboard-bottom .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+}
+
+.dashboard-bottom .card td,
+.dashboard-bottom .card li {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 8px 14px !important;
+    border-radius: 6px !important;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* Toolbar Umum */
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -194,140 +256,106 @@ body {
 .toolbar input[type="text"],
 .toolbar input[type="date"],
 .toolbar select {
-    padding: 8px 14px;
+    padding: 10px 14px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     font-size: 14px;
     outline: none;
-    width: 280px;
-    transition: border-color 0.2s;
-}
-
-.toolbar input:focus {
-    border-color: #2563eb;
+    width: 300px;
+    background-color: #ffffff;
+    color: #1e293b;
 }
 
 /* ========================================================================== */
-/* 6. TABEL DATA (SKU, Inbound, Outbound, Opname)                             */
+/* TABEL GRID: HEADER & ISI DATA KOTAK PER KOTAK TERPISAH                    */
 /* ========================================================================== */
 table {
     width: 100%;
-    border-collapse: collapse;
-    background-color: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background-color: transparent;
+    border-collapse: separate;
+    border-spacing: 0 8px;
 }
 
-th, td {
-    padding: 14px 20px;
-    text-align: left;
-    font-size: 14px;
-}
-
-th {
-    background-color: #f8fafc;
-    color: #475569;
-    font-size: 11px;
+thead th {
+    color: #ffffff;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    border-bottom: 1px solid #e2e8f0;
+    font-weight: 700;
+    padding: 14px 16px;
+    border: 2px solid #f1f5f9;
 }
 
-td {
-    border-bottom: 1px solid #f1f5f9;
-    color: #334155;
-}
+thead th:nth-child(1) { background: #2563eb; }
+thead th:nth-child(2) { background: #059669; }
+thead th:nth-child(3) { background: #d97706; }
+thead th:nth-child(4) { background: #7c3aed; }
+thead th:nth-child(5) { background: #0891b2; }
+thead th:nth-child(6) { background: #db2777; }
+thead th:nth-child(7) { background: #dc2626; }
 
-tr:last-child td {
-    border-bottom: none;
-}
-
-tr:hover td {
-    background-color: #f8fafc;
-}
-
-/* ========================================================================== */
-/* 7. TOMBOL-TOMBOL AKSI (BUTTONS)                                            */
-/* ========================================================================== */
-.btn-green {
-    background-color: #059669;
-    color: white;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 8px;
+tbody td {
+    padding: 14px 16px;
     font-size: 14px;
     font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.btn-green:hover { background-color: #047857; }
-
-.btn-blue {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.btn-blue:hover { background-color: #1d4ed8; }
-
-.btn-black {
-    background-color: #0f172a;
-    color: white;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.btn-black:hover { background-color: #1e293b; }
-
-/* Tombol Aksi di dalam Baris Tabel */
-.action-btn-edit {
-    color: #2563eb;
-    background: none;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    margin-right: 12px;
-}
-.action-btn-delete {
-    color: #dc2626;
-    background: none;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
+    border: 1px solid #cbd5e1;
 }
 
-/* ========================================================================== */
-/* 8. PENGATURAN CETAK (CSS PRINT / LAPORAN)                                   */
-/* ========================================================================== */
+tbody td:nth-child(1) { background-color: #eff6ff !important; }
+tbody td:nth-child(2) { background-color: #f0fdf4 !important; }
+tbody td:nth-child(3) { background-color: #fffbeb !important; }
+tbody td:nth-child(4) { background-color: #f5f3ff !important; }
+tbody td:nth-child(5) { background-color: #ecfeff !important; }
+tbody td:nth-child(6) { background-color: #fdf2f8 !important; }
+tbody td:nth-child(7) { background-color: #fef2f2 !important; }
+
+/* Tombol Aksi */
+.btn-green { background-color: #059669; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+.btn-blue { background-color: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+.btn-black { background-color: #0f172a; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+.action-btn-delete { color: #dc2626; background: #ffffff; padding: 6px 12px; border-radius: 6px; border: 1px solid #fecaca; font-weight: 600; cursor: pointer; }
+
+/* Print Mode */
 @media print {
-    /* Sembunyikan elemen navigasi dan kontrol saat dicetak */
     #sidebar, #main-header, .toolbar, button {
         display: none !important;
     }
-   
-    /* Ubah latar belakang jadi putih bersih dan hilangkan batasan tinggi */
     body, .app-container, #main-content, #content-area {
         background-color: #ffffff !important;
         overflow: visible !important;
         height: auto !important;
         width: 100% !important;
     }
-   
     .card {
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
     }
+}
+/* Aturan khusus biar popup lebih lega, berjarak, dan tidak mepet */
+.modal-content, 
+div[id*="modal"] > div, 
+div[class*="modal-dialog"] {
+    padding: 30px !important;
+    gap: 16px !important;
+}
+
+/* Kasih jarak ke bawah untuk setiap elemen input/select di dalam popup */
+.modal-content input, 
+.modal-content select, 
+.modal-content textarea,
+div[id*="modal"] input, 
+div[id*="modal"] select {
+    margin-bottom: 14px !important;
+}
+
+/* Merapikan jarak area tombol bagian bawah popup agar lega */
+.modal-content .modal-actions, 
+.modal-content div:has(button),
+div[id*="modal"] div:last-child {
+    margin-top: 20px !important;
+    padding-top: 15px !important;
+    border-top: 1px solid #e2e8f0 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
 }
